@@ -1,4 +1,4 @@
-#Advent of Code 2020 - Day8
+#Advent of Code 2020 - Day 9
 
 def get_input(file):
     with open(file, 'r') as f:
