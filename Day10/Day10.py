@@ -23,39 +23,19 @@ def use_all(input_val):
 
 def find_all_combinations(input_val):
     full_tree = {0:[]}
-
-    for x in range(len(input_val)):
-        current_element = input_val[x]
+    for x in range(len(input_val) - 2):
 
         try:
-            first_next_element = input_val[x+1]
+            next_three = [input_val[x+1], input_val[x+2], input_val[x+3]]
         except IndexError:
-            first_next_element = 9999999999999
+            next_three = [input_val[x+1], input_val[x+2], 0]
         
-        try:
-            second_next_element = input_val[x+2]
-        except IndexError:
-            second_next_element = 9999999999999
-
-        try:
-            third_next_element = input_val[x+3]
-        except IndexError:
-            third_next_element = 99999999999999
-
-        #next_three = [input_val[x+1], input_val[x+2], input_val[x+3]]
-
-        if first_next_element - current_element in [1,2,3]:
-            full_tree[current_element].append(first_next_element)
-            full_tree[first_next_element] = []
-        
-        if second_next_element - current_element in [2,3]:
-            full_tree[current_element].append(second_next_element)
-            full_tree[second_next_element] = []
-
-        if third_next_element - current_element == 3:
-            full_tree[current_element].append(third_next_element)
-            full_tree[third_next_element] = []
-           
+        for element in range(len(next_three)):
+            if next_three[element] - input_val[x] in [1,2,3]:
+                full_tree[input_val[x]].append(next_three[element])
+                full_tree[next_three[element]] = []
+    
+    full_tree[input_val[-1]] = []
     return full_tree
 
 print (find_all_combinations(test_jolts))
